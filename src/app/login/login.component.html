@@ -1,19 +1,31 @@
 
 
-<div class="login-page">
+
+
+  <div class="login-page">
     <div class="form">
       <p>please login to see the weather </p>
-      <form class="register-form" #loginform="ngForm">
-        <input type="text" placeholder="name"/>
+      <!-- <form class="register-form">
+        <input type="text" placeholder="username" />
         <input type="password" placeholder="password"/>
         <input type="text" placeholder="email address"/>
         <button>create</button>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
-      </form>
-      <form class="login-form">
-        <input type="text" placeholder="username"/>
-        <input type="password" placeholder="password"/>
-        <button type="submit">login</button>
+      </form> -->
+      <form class="login-form" #loginform="ngForm" (ngSubmit)="loginUser()">
+        <small class="text-danger">{{msg}}</small>
+        <input type="email" placeholder="email" name="email" [(ngModel)]=user.email required #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [class.is-invalid]="email.invalid && email.touched"/>
+        <div *ngIf="email.invalid && email.touched">
+            <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+            <small class="text-danger" *ngIf="email.errors.pattern">Invalid email</small>
+        </div>
+        
+        <input type="password" placeholder="password" name="password" [(ngModel)]=user.password #password="ngModel" required
+        [class.is-invalid]="password.invalid && password.touched"/>
+        <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+        
+        <button [disabled]="loginform.form.invalid" type="submit">login</button>
         <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
       </form>
     </div>
