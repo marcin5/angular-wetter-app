@@ -1,1 +1,31 @@
-<p>home works!</p>
+
+<div>
+        <small class="text-danger">{{msg}}</small>
+        <p>find the weather by city</p>       
+        <input type="text" placeholder="city name" [(ngModel)]=city  />
+        <button type="submit" (click)="getWeatherByCityName()">find</button>
+</div>
+<div>
+        <small class="text-danger">{{msg}}</small>
+        <p>find the weather by zipcode</p>       
+        <input type="text" placeholder="zipcode" name="zipCode" [(ngModel)]=zip  />
+        <input type="text" placeholder="country code" name="countryCode" [(ngModel)]=country  />
+        <button type="submit" (click)="getWeatherByZipAndCountryCode()">find</button>
+</div>
+
+<table style="width:100%">
+  <tr>
+      <th>temp</th>
+      <th>temp max</th>
+      <th>temp min</th>
+      <th>pressure</th>
+  </tr>
+  <tr>
+      <th>{{weatherData.temp}}</th>
+      <th>{{weatherData.tempMin}}</th>
+      <th>{{weatherData.tempMax}}</th>
+      <th>{{weatherData.pressure}}</th>
+  </tr>
+</table>
+
+

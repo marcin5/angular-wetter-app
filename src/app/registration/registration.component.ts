@@ -1,15 +1,15 @@
-import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../auth.service';
 import { NgForm } from '@angular/forms';
 import { User } from '../user';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   user = new User();
   msg = '';
@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginUser(){
-    this.service.loginUserFromeRemote(this.user).subscribe(
+  registerUser(){
+    this.service.registerUser(this.user).subscribe(
       data => {
         this.router.navigate(['/home']);
       },

@@ -1,0 +1,32 @@
+<div class="login-page">
+    <div class="form">
+      <p>please create an account</p>
+      <form class="login-form" #registerForm="ngForm" (ngSubmit)="registerUser()">
+        <small class="text-danger">{{msg}}</small>
+        
+        <div class="form-group">
+            <input type="email" placeholder="email" name="email" [(ngModel)]=user.email required #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            [class.is-invalid]="email.invalid && email.touched"/>
+            <div *ngIf="email.invalid && email.touched">
+                <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+                <small class="text-danger" *ngIf="email.errors.pattern">Invalid email</small>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <input type="password" placeholder="password" name="password" [(ngModel)]=user.password #password="ngModel" required
+            [class.is-invalid]="password.invalid && password.touched"/>
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+        </div>
+        
+        <div class="form-group">
+            <input type="password" placeholder="confirm password" name="confirmPassword" (ngModel)=user.password #confirmPassword="ngModel" required
+            [class.is-invalid]="password.invalid && password.touched"/>
+            <small class="text-danger" [class.d-none]="(confirmPassword.value == password.value) || confirmPassword.untouched">Confirmed Password is diffrent</small>
+        </div>
+
+        <button [disabled]="registerForm.form.invalid" type="submit">create an account</button>
+        <small class="message" [routerLink]="['/login']">Already registrated? login here</small>
+      </form>
+    </div>
+</div>
